@@ -1,6 +1,7 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Categorie } from "./Categorie";
 import { Compte } from "./Compte";
+import { Releve } from "./Releve";
 import { Tier } from "./Tier";
 
 @Entity()
@@ -23,4 +24,10 @@ export class Ligne {
 
     @Column()
     note: string
+
+    @ManyToOne(type => Releve)
+    rapprochement: Releve
+
+    @Column()
+    isHorsBudget: boolean
 }
