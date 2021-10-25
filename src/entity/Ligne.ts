@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Categorie } from "./Categorie";
 import { Compte } from "./Compte";
 import { Releve } from "./Releve";
@@ -10,17 +10,20 @@ export class Ligne {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(type => Categorie)
+    @ManyToOne(type => Categorie, { nullable: false })
     categorie: Categorie;
 
-    @ManyToOne(type => Tier)
+    @ManyToOne(type => Tier, { nullable: false })
     tier: Tier;
 
-    @ManyToOne(type => Compte, compte => compte.lignes)
+    @ManyToOne(type => Compte, compte => compte.lignes, { nullable: false })
     compte: Compte;
 
-    @Column()
+    @Column({ nullable: false })
     date: Date
+
+    @Column({ nullable: false })
+    valeur: number
 
     @Column()
     note: string
@@ -30,4 +33,7 @@ export class Ligne {
 
     @Column()
     isHorsBudget: boolean
+
+    @OneToOne(type => Ligne, ligne => ligne.virement)
+    virement?: Ligne
 }
