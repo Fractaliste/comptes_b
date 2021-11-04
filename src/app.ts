@@ -67,6 +67,12 @@ createConnection().then(connection => {
 
 })
 
+function errorFunction(res: express.Response<any, Record<string, any>>): (reason: any) => void | PromiseLike<void> {
+    return (error) => {
+        console.error(error);
+        res.sendStatus(500);
+    };
+}
 function listenToDefault(connection: Connection, dtoName: string, opts?) {
     const repo = connection.getRepository(dtoName);
     const baseUrl = `/${dtoName}`
