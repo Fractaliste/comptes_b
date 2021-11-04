@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Categorie } from "./Categorie";
 import { Compte } from "./Compte";
 import { Releve } from "./Releve";
@@ -24,16 +24,20 @@ export class Ligne {
 
     @Column({ nullable: false })
     valeur: number
-
-    @Column()
+    
+    @Column({ nullable: true })
     note: string
+
+    @Column({ nullable: true })
+    numeroCheque: number
 
     @ManyToOne(type => Releve)
     rapprochement: Releve
 
-    @Column()
+    @Column({default:false})
     isHorsBudget: boolean
 
     @OneToOne(type => Ligne, ligne => ligne.virement)
+    @JoinColumn()
     virement?: Ligne
 }
