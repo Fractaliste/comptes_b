@@ -28,21 +28,65 @@ createConnection().then(connection => {
 
         Promise.all([c, l])
             .then(() => res.sendStatus(200))
-            .catch((error) => {
-                console.error(error);
-                res.sendStatus(500)
-            })
+            .catch(errorFunction(res))
 
         console.log("Import end");
     })
 
-    app.get("/ligne/:compteId", function (req: Request, res: Response) {
+
+
+    app.get("/ligne/statistique", function (req: Request, res: Response) {
         connection.getRepository(Ligne)
-            .find({ where: { compte: { id: req.params.compteId } } })
-            .then(lignes => res.json(lignes))
+            .find({ relations: ["categorie"] })
+            .then(lignes => {
+                return lignes.reduce((prev: any, current: Ligne) => {
+                    const cat = current.categorie
+                    if (!prev[cat.name]) {
+                        prev[cat.name] = { nb: 0, sum: 0 }
+                    }
+                    prev[cat.name].nb++
+                    prev[cat.name].sum += current.valeur
+                    return prev
+                }, {})
+            })
+            .then(stats => res.json(stats))
+            .catch(errorFunction(res))
     })
 
+    app.get("/ligne/:compteId", function (req: Request, res: Response) {
+        connection.getRepository(Ligne)
+            .find({
+                where: { compte: { id: req.params.compteId } },
+                relations: ["categorie", "tier", "rapprochement", "virement"]
+            })
+            .then(lignes => res.json(lignes))
+            .catch(errorFunction(res))
+    })
 
+    app.delete("/ligne", function (req: Request, res: Response) {
+
+        const repo: Repository<Ligne> = connection.getRepository(Ligne)
+        const entityToDelete = repo.create(req.body as DeepPartial<Ligne>)
+
+        repo.findOneOrFail(entityToDelete.id)
+            .then(l => {
+                if (l.rapprochement) {
+                    throw new Error("Cannot remove ligne because it has been checked")
+                } else {
+                    return repo.remove(l)
+                }
+            })
+            .then(() => repo.findOne(entityToDelete.id))
+            .then((ligne) => {
+                if (ligne) {
+                    console.error("Impossible de supprimer", ligne);
+                    res.sendStatus(500)
+                } else {
+                    res.status(200)
+                    res.json(entityToDelete.id)
+                }
+            }).catch(errorFunction(res))
+    })
     app.delete("/categorie", function (req: Request, res: Response) {
         const repo: Repository<Categorie> = connection.getRepository(Categorie)
         const entityToDelete = repo.create(req.body as DeepPartial<Categorie>)
@@ -51,16 +95,11 @@ createConnection().then(connection => {
                 if (c.children && c.children.length > 0) {
                     throw new Error("Cannot remove category because it has children")
                 } else {
-                    console.log("deleting");
-
-                    return repo.delete(entityToDelete)
+                    return repo.delete(c)
                 }
-            }).then(() => {
+            }).then((deleteResult) => {
                 res.sendStatus(200)
-            }).catch((error: Error) => {
-                console.error(error.message);
-                res.sendStatus(500)
-            })
+            }).catch(errorFunction(res))
     })
 
     app.listen(3000, () => console.log("Listening port 3000"))
@@ -73,6 +112,7 @@ function errorFunction(res: express.Response<any, Record<string, any>>): (reason
         res.sendStatus(500);
     };
 }
+
 function listenToDefault(connection: Connection, dtoName: string, opts?) {
     const repo = connection.getRepository(dtoName);
     const baseUrl = `/${dtoName}`
@@ -82,7 +122,7 @@ function listenToDefault(connection: Connection, dtoName: string, opts?) {
         const entity = repo.create(req.body);
 
         repo.save(entity)
-            .then(() => res.sendStatus(200))
+            .then((record) => res.json(record))
             .catch(error => {
                 res.sendStatus(500)
                 console.error(error);
@@ -93,7 +133,7 @@ function listenToDefault(connection: Connection, dtoName: string, opts?) {
         repo.find(opts)
             .then((entities) => {
                 res.status(200)
-                res.send(entities)
+                res.json(entities)
             })
             .catch(error => {
                 res.sendStatus(500)
