@@ -22,9 +22,9 @@ export class Ligne {
     @Column({ nullable: false })
     date: Date
 
-    @Column({ nullable: false })
+    @Column({ nullable: false})
     valeur: number
-    
+
     @Column({ nullable: true })
     note: string
 
@@ -34,7 +34,7 @@ export class Ligne {
     @ManyToOne(type => Releve)
     rapprochement: Releve
 
-    @Column({default:false})
+    @Column({ default: false })
     isHorsBudget: boolean
 
     @OneToOne(type => Ligne, ligne => ligne.virement)

@@ -5,6 +5,8 @@ import "reflect-metadata";
 import { ImportController } from "./import";
 import { Categorie } from "./entity/Categorie";
 import { Ligne } from "./entity/Ligne";
+import { Compte } from "./entity/Compte";
+import { Releve } from "./entity/Releve";
 
 const app = express();
 app.use(express.json()) // for parsing application/json
@@ -13,11 +15,7 @@ app.use(express.urlencoded({ extended: true })) // for parsing application/x-www
 
 createConnection().then(connection => {
 
-    listenToDefault(connection, "categorie", { relations: ["parent", "children"] })
-    listenToDefault(connection, "compte")
-    listenToDefault(connection, "ligne")
-    listenToDefault(connection, "releve")
-    listenToDefault(connection, "tier")
+
 
     app.post("/import", function (req: Request, res: Response) {
         console.log("Import starting %s", req.headers["content-type"]);
@@ -34,6 +32,21 @@ createConnection().then(connection => {
     })
 
 
+
+    app.get("/compte/solde/:compteId", function (req: Request, res: Response) {
+        const repo: Repository<Ligne> = connection.getRepository(Ligne)
+        console.log("Want solde for compte");
+        repo.createQueryBuilder("l")
+            .select("sum(valeur) as sum")
+            .leftJoin("l.compte", "c")
+            .where("c.id = :compteId", { compteId: req.params.compteId })
+            .getRawOne()
+            .then(selectResult => {
+                res.json(selectResult.sum ? selectResult.sum : 0)
+            })
+            .catch(errorFunction(res))
+
+    })
 
     app.get("/ligne/statistique", function (req: Request, res: Response) {
         connection.getRepository(Ligne)
@@ -53,13 +66,23 @@ createConnection().then(connection => {
             .catch(errorFunction(res))
     })
 
-    app.get("/ligne/:compteId", function (req: Request, res: Response) {
+    app.get("/ligne/compte/:compteId", function (req: Request, res: Response) {
         connection.getRepository(Ligne)
             .find({
                 where: { compte: { id: req.params.compteId } },
                 relations: ["categorie", "tier", "rapprochement", "virement"]
             })
             .then(lignes => res.json(lignes))
+            .catch(errorFunction(res))
+    })
+
+    app.get("/releve/compte/:compteId", function (req: Request, res: Response) {
+        connection.getRepository(Releve)
+            .findOne({
+                where: { compte: { id: req.params.compteId } },
+                order: { date: "DESC" },
+            })
+            .then(releve => res.json(releve))
             .catch(errorFunction(res))
     })
 
@@ -80,7 +103,7 @@ createConnection().then(connection => {
             .then((ligne) => {
                 if (ligne) {
                     console.error("Impossible de supprimer", ligne);
-                    res.sendStatus(500)
+                    errorFunction(res, "Impossible de supprimer la ligne " + ligne.id)
                 } else {
                     res.status(200)
                     res.json(entityToDelete.id)
@@ -102,11 +125,17 @@ createConnection().then(connection => {
             }).catch(errorFunction(res))
     })
 
+    listenToDefault(connection, "categorie", { relations: ["parent", "children"] })
+    listenToDefault(connection, "compte")
+    listenToDefault(connection, "ligne")
+    listenToDefault(connection, "releve")
+    listenToDefault(connection, "tier")
+
     app.listen(3000, () => console.log("Listening port 3000"))
 
 })
 
-function errorFunction(res: express.Response<any, Record<string, any>>): (reason: any) => void | PromiseLike<void> {
+function errorFunction(res: express.Response<any, Record<string, any>>, message?: string): (reason: any) => void | PromiseLike<void> {
     return (error) => {
         console.error(error);
         res.sendStatus(500);
@@ -131,6 +160,18 @@ function listenToDefault(connection: Connection, dtoName: string, opts?) {
 
     app.get(baseUrl, function (req: Request, res: Response) {
         repo.find(opts)
+            .then((entities) => {
+                res.status(200)
+                res.json(entities)
+            })
+            .catch(error => {
+                res.sendStatus(500)
+                console.error(error);
+            })
+    });
+
+    app.get(`${baseUrl}/id/:id`, function (req: Request, res: Response) {
+        repo.findOne(req.params.id, opts)
             .then((entities) => {
                 res.status(200)
                 res.json(entities)

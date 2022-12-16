@@ -1,0 +1,421 @@
+!Type:Bank
+D15/09'2021
+T0.00
+CX
+PSolde initial
+L[Banque Courtois]
+^
+D15/09'2021
+CX
+T-21.89
+PCotisation Compte
+LFrais bancaires:Carte de paiement - de crédit
+^
+D20/09'2021
+CX
+T187.81
+PRemb crèche
+LFrais professionnels:Remboursés
+^
+D20/09'2021
+CX
+T0.14
+PPaypal
+LFrais bancaires:Intérêts versés
+^
+D20/09'2021
+CX
+T0.01
+PPaypal
+LFrais bancaires:Intérêts versés
+^
+D21/09'2021
+CX
+T48.97
+PRetrocession Assurance hab
+LAbonnement-factures:Assurance habitation
+^
+D22/09'2021
+CX
+T-1,305.00
+PTaxe foncière
+L[Boursorama]
+^
+D23/09'2021
+CX
+T8.50
+PRemb CPAM
+LSanté:Complémentaire santé
+^
+D25/09'2021
+CX
+T-116.10
+PAbonnement Petit quotidien
+LLoisirs-culture-sport:Livres
+^
+D28/09'2021
+CX
+T7.50
+PRemb Humanis
+LSanté:Complémentaire santé
+^
+D29/09'2021
+CX
+T12,500.00
+PVirement compte à compte
+L[Boursorama]
+^
+D29/09'2021
+CX
+T20.70
+PRemb Humanis
+LSanté:Complémentaire santé
+^
+D01/10'2021
+T-51.14
+PAssurance Habitation
+LAbonnement-factures:Assurance habitation
+^
+D01/10'2021
+T-87.65
+PAssurance Voiture
+LAbonnement-factures:Assurance auto
+^
+D01/10'2021
+CX
+T8,000.00
+PVirement compte à compte
+L[Boursorama]
+^
+D01/10'2021
+T-81.50
+PRestaurant
+LLoisirs-culture-sport:Restaurants
+^
+D01/10'2021
+T-19.20
+PAction crèche
+LFrais professionnels:Remboursés
+^
+D01/10'2021
+CX
+T9.00
+PRemb Humanis
+LSanté:Complémentaire santé
+^
+D02/10'2021
+T-1,000.00
+PEpargne Travaux
+L[LDD Raph Epargne Travaux]
+^
+D02/10'2021
+T-15.00
+PFruits et Légumes
+LAlimentation:Épicerie
+^
+D02/10'2021
+T-50.00
+PTransat
+LDivers:Cadeaux
+^
+D04/10'2021
+T-15.00
+PPanier Fruits et Légumes
+LAlimentation:Épicerie
+^
+D05/10'2021
+T1,925.56
+PSalaire Amandine
+LTraitements et salaires:Salaire net
+^
+D05/10'2021
+T-98.38
+PIlek (Gaz)
+LAbonnement-factures:Chauffage
+^
+D05/10'2021
+T-49.56
+PIlek (Electricité)
+LAbonnement-factures:Electricité
+^
+D05/10'2021
+T473.21
+PCAF
+LAutres revenus:Allocations familiales
+^
+D05/10'2021
+T-233.41
+PEpargne Travaux
+L[LDD Raph Epargne Travaux]
+^
+D05/10'2021
+T-100.00
+PEpargne Vacances
+L[LA Am Vacances Loisirs]
+^
+D05/10'2021
+T-114.00
+PEpargne Prévisionnelle
+L[LA Raph Epargne Prévisionnelle]
+^
+D06/10'2021
+T-6.20
+PProtection juridique
+LAbonnement-factures:Assurance habitation
+^
+D06/10'2021
+T-39.99
+PFreeBox
+LAbonnement-factures:Internet
+^
+D07/10'2021
+T-22.50
+PFruits et Légumes
+LAlimentation:Épicerie
+^
+D07/10'2021
+T-22.50
+PPanier Fruits et Légumes
+LAlimentation:Épicerie
+^
+D10/10'2021
+T-11.70
+PPizzeria
+LLoisirs-culture-sport:Restaurants
+^
+D11/10'2021
+MEquilibrage du budget
+T-358.33
+PVirement compte à compte
+L[LA Am Vacances Loisirs]
+^
+D11/10'2021
+MEquilibrage du budget
+T-6,925.70
+PVirement compte à compte
+L[LDD Amandine  En Cas de Soucis]
+^
+D12/10'2021
+T-30.00
+PMédecin
+LSanté
+^
+D12/10'2021
+T-30.70
+PPharmacie
+LSanté:Pharmacie
+^
+D12/10'2021
+MEquilibrage du budget
+T-10,078.72
+PVirement compte à compte
+L[LDD Raph Epargne Travaux]
+^
+D13/10'2021
+T-97.46
+PCourses
+LAlimentation:Épicerie
+^
+D13/10'2021
+T-20.00
+PPère Tanguy Marie
+LLoisirs-culture-sport:Cinéma-spectacle-musées-expositions
+^
+D13/10'2021
+T-60.00
+PSoeurs de Moissac
+LLoisirs-culture-sport:Cinéma-spectacle-musées-expositions
+^
+D13/10'2021
+T-70.00
+PAstrid et Nicolas
+LLoisirs-culture-sport:Cinéma-spectacle-musées-expositions
+^
+D13/10'2021
+T-19.99
+PFree Mobile
+LAbonnement-factures:Téléphone
+^
+D13/10'2021
+T-30.70
+PPharmacie
+LSanté:Pharmacie
+^
+D13/10'2021
+T-30.00
+PMédecin
+LSanté
+^
+D14/10'2021
+T-97.46
+PCourses
+LAlimentation:Épicerie
+^
+D14/10'2021
+T-5.68
+PVinted vêtements
+LHabillement:Vetements
+^
+D14/10'2021
+T-21.50
+PPanier Fruits et Légumes
+LAlimentation:Épicerie
+^
+D14/10'2021
+T-57.15
+PVinted chaussures
+LHabillement:Chaussures
+^
+D15/10'2021
+T-21.89
+PCotisation Compte
+LFrais bancaires:Carte de paiement - de crédit
+^
+D15/10'2021
+T-611.59
+PRévision/CT/Changement Pneus
+LAuto-moto:Entretien-réparations
+^
+D15/10'2021
+T-9.95
+PPharmacie
+LSanté:Pharmacie
+^
+D15/10'2021
+T-27.32
+PCourses Crèche
+LFrais professionnels:Remboursés
+^
+D15/10'2021
+T-11.99
+POrange Téléphone Raph
+LAbonnement-factures:Téléphone
+^
+D15/10'2021
+T17.50
+PRemb CPAM
+LSanté:Complémentaire santé
+^
+D15/10'2021
+T-6.73
+PVinted vêtements
+LHabillement:Vetements
+^
+D15/10'2021
+T-7.78
+PVinted vêtements
+LHabillement:Vetements
+^
+D15/10'2021
+T-8.83
+PVinted vêtements
+LHabillement:Vetements
+^
+D15/10'2021
+T-17.78
+PVinted vêtements
+LHabillement:Vetements
+^
+D17/10'2021
+T-15.00
+PPéage
+LAuto-moto:Parking-péage
+^
+D18/10'2021
+T-63.97
+PEssence
+LAuto-moto:Carburant
+^
+D18/10'2021
+T-24.58
+PVinted vêtements
+LHabillement:Vetements
+^
+D18/10'2021
+T-9.38
+PVinted vêtements
+LHabillement:Vetements
+^
+D18/10'2021
+T-8.83
+PVinted vêtements
+LHabillement:Vetements
+^
+D20/10'2021
+T-77.00
+PRamonage cheminée
+LAbonnement-factures:Chauffage
+^
+D20/10'2021
+T-170.81
+PCourses
+LAlimentation:Épicerie
+^
+D20/10'2021
+T-77.00
+PCourses
+LAlimentation:Épicerie
+^
+D21/10'2021
+T-40.48
+PGifi
+LÉquipement du logement:Ameublement
+^
+D21/10'2021
+MArrhes classe verte Paco
+T-30.00
+PEcole
+LEnfants
+^
+D22/10'2021
+T-16.50
+PVins
+LAlimentation
+^
+D22/10'2021
+T-35.24
+PFruits et Légumes
+LAlimentation:Épicerie
+^
+D22/10'2021
+MAnniv + noël
+T-459.99
+PCadeau
+LDivers:Cadeaux
+^
+D22/10'2021
+MTemporaire pour éviter découvert
+T400.00
+L[LDD Raph Epargne Travaux]
+^
+D23/10'2021
+MEssence tondeuse
+T-8.31
+PEssence
+LÉquipement du logement:Jardinage
+^
+D23/10'2021
+T-60.00
+PCultura
+LDivers:Cadeaux
+^
+D31/10'2021
+MSolde Boursoram
+T-2,193.00
+L[LA Raph Epargne Prévisionnelle]
+^
+D31/10'2021
+MEntretien voiture
+T611.59
+L[LA Raph Epargne Prévisionnelle]
+^
+D05/11'2021
+T1,996.94
+PSalaire Amandine
+LTraitements et salaires:Salaire net
+^
+D15/11'2021
+T-138.00
+PTaxe audio visuelle
+LImpôts
+^
